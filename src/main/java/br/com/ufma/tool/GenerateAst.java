@@ -22,7 +22,7 @@ public class GenerateAst {
     private static void defineAst(
             String outputDir, String baseName, List<String> types)
             throws IOException {
-        String path = outputDir + "/lox/" + baseName + ".java";
+        String path = outputDir + "/br/com/ufma/lox/" + baseName + ".java";
         PrintWriter writer = new PrintWriter(path, "UTF-8");
 
         writer.println("package br.com.ufma.lox;");
