@@ -1,4 +1,4 @@
-package br.com.ufma.compiladores;
+package br.com.ufma.lox;
 
 public enum TokenType {
     // Single-character tokens.

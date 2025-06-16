@@ -1,11 +1,11 @@
-package br.com.ufma.compiladores;
+package br.com.ufma.lox;
+
+import static br.com.ufma.lox.TokenType.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static br.com.ufma.compiladores.TokenType.*;
 
 class Scanner {
     private final String source;
