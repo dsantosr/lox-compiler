@@ -26,7 +26,8 @@ public class Lox {
         byte[] bytes = Files.readAllBytes(Paths.get(path));
         run(new String(bytes, Charset.defaultCharset()));
         // Indicate an error in the exit code.
-        if (hadError) System.exit(65);
+        if (hadError)
+            System.exit(65);
     }
 
     private static void runPrompt() throws IOException {
@@ -36,7 +37,8 @@ public class Lox {
         for (;;) {
             System.out.print("> ");
             String line = reader.readLine();
-            if (line == null) break;
+            if (line == null)
+                break;
             run(line);
             hadError = false;
         }
@@ -46,10 +48,14 @@ public class Lox {
         Scanner scanner = new Scanner(source);
         List<Token> tokens = scanner.scanTokens();
 
-        // For now, just print the tokens.
-        for (Token token : tokens) {
-            System.out.println(token);
-        }
+        Parser parser = new Parser(tokens);
+        Expr expression = parser.parse();
+
+        // Stop if there was a syntax error ou se a expressão for nula.
+        if (hadError || expression == null)
+            return;
+
+        System.out.println(new AstPrinter().print(expression));
     }
 
     static void error(int line, String message) {
@@ -57,7 +63,7 @@ public class Lox {
     }
 
     private static void report(int line, String where,
-                               String message) {
+            String message) {
         System.err.println(
                 "[line " + line + "] Error" + where + ": " + message);
         hadError = true;
