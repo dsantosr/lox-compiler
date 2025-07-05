@@ -53,15 +53,14 @@ public class Lox {
         List<Token> tokens = scanner.scanTokens();
 
         Parser parser = new Parser(tokens);
-        Expr expression = parser.parse();
+        List<Stmt> statements = parser.parse();
 
         // Stop if there was a syntax error ou se a expressão for nula.
-        if (hadError || expression == null)
+        if (hadError || statements == null)
             return;
 
-        interpreter.interpret(expression);
+        interpreter.interpret(statements);
 
-        System.out.println(new AstPrinter().print(expression));
     }
 
     static void error(int line, String message) {
@@ -70,7 +69,7 @@ public class Lox {
 
     static void runtimeError(RuntimeError error) {
         System.err.println(error.getMessage() +
-                "\n[line " + error.token.line + "]");
+                "\n[line " + error.token.line() + "]");
         hadRuntimeError = true;
     }
 
