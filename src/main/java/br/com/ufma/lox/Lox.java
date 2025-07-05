@@ -56,8 +56,7 @@ public class Lox {
         List<Stmt> statements = parser.parse();
 
         // Stop if there was a syntax error ou se a expressão for nula.
-        if (hadError || statements == null)
-            return;
+        if (hadError) return;
 
         interpreter.interpret(statements);
 
