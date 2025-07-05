@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class GenerateAst {
+    //java -cp target/classes br.com.ufma.tool.GenerateAst src/main/java
     public static void main(String[] args) throws IOException {
         if (args.length != 1) {
             System.err.println("Usage: generate_ast <output directory>");
@@ -15,6 +16,7 @@ public class GenerateAst {
         defineAst(outputDir, "Expr", Arrays.asList(
             "Assign   : Token name, Expr value",
             "Binary   : Expr left, Token operator, Expr right",
+            "Call     : Expr callee, Token paren, List<Expr> arguments",
             "Grouping : Expr expression",
             "Literal  : Object value",
             "Logical  : Expr left, Token operator, Expr right",
