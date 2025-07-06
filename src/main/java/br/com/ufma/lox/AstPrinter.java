@@ -69,6 +69,11 @@ class AstPrinter implements Expr.Visitor<String> {
         return builder.toString();
     }
 
+    @Override
+    public String visitGetExpr(Expr.Get expr) {
+        return parenthesize("get " + expr.name.lexeme(), expr.object);
+    }
+
     public static void main(String[] args) {
         Expr expression = new Expr.Binary(
                 new Expr.Unary(
