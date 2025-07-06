@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import br.com.ufma.lox.Return;
-
 class Interpreter implements Expr.Visitor<Object>,
         Stmt.Visitor<Void> {
 
@@ -96,6 +94,14 @@ class Interpreter implements Expr.Visitor<Object>,
     }
 
     @Override
+    public Void visitClassStmt(Stmt.Class stmt) {
+        environment.define(stmt.name.lexeme(), null);
+        LoxClass klass = new LoxClass(stmt.name.lexeme());
+        environment.assign(stmt.name, klass);
+        return null;
+    }
+
+    @Override
     public Void visitExpressionStmt(Stmt.Expression stmt) {
         evaluate(stmt.expression);
         return null;
@@ -163,7 +169,7 @@ class Interpreter implements Expr.Visitor<Object>,
         } else {
             globals.assign(expr.name, value);
         }
-        
+
         return value;
     }
 
