@@ -74,6 +74,11 @@ class AstPrinter implements Expr.Visitor<String> {
         return parenthesize("get " + expr.name.lexeme(), expr.object);
     }
 
+    @Override
+    public String visitSetExpr(Expr.Set expr) {
+        return parenthesize("set " + expr.name.lexeme(), expr.object, expr.value);
+    }
+
     public static void main(String[] args) {
         Expr expression = new Expr.Binary(
                 new Expr.Unary(
