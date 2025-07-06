@@ -56,10 +56,16 @@ public class Lox {
         List<Stmt> statements = parser.parse();
 
         // Stop if there was a syntax error ou se a expressão for nula.
-        if (hadError) return;
+        if (hadError)
+            return;
 
+        Resolver resolver = new Resolver(interpreter);
+        resolver.resolve(statements);
+
+        // Stop if there was a resolution error.
+        if (hadError)
+            return;
         interpreter.interpret(statements);
-
     }
 
     static void error(int line, String message) {

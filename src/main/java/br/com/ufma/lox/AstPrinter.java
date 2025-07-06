@@ -56,6 +56,19 @@ class AstPrinter implements Expr.Visitor<String> {
         return parenthesize(expr.operator.lexeme(), expr.left, expr.right);
     }
 
+    @Override
+    public String visitCallExpr(Expr.Call expr) {
+        StringBuilder builder = new StringBuilder();
+        builder.append("(call ");
+        builder.append(expr.callee.accept(this));
+        for (Expr argument : expr.arguments) {
+            builder.append(" ");
+            builder.append(argument.accept(this));
+        }
+        builder.append(")");
+        return builder.toString();
+    }
+
     public static void main(String[] args) {
         Expr expression = new Expr.Binary(
                 new Expr.Unary(
