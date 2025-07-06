@@ -1,27 +1,8 @@
 //to run: java -cp target/classes br.com.ufma.lox.Lox loxTest.txt
-fun fib(n) {
-  if (n <= 1) return n;
-  return fib(n - 2) + fib(n - 1);
-}
-
-for (var i = 0; i < 20; i = i + 1) {
-  print fib(i);
-}
-
-fun makeCounter() {
-  var i = 0;
-  fun count() {
-    i = i + 1;
-    print i;
+class Bacon {
+  eat() {
+    print "Crunch crunch crunch!";
   }
-
-  return count;
 }
 
-var counter = makeCounter();
-counter(); // "1".
-counter(); // "2".
-
-class Bagel {}
-var bagel = Bagel();
-print bagel;
+Bacon().eat(); // Prints "Crunch crunch crunch!".
