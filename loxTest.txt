@@ -1,8 +1,0 @@
-//to run: java -cp target/classes br.com.ufma.lox.Lox loxTest.txt
-class Bacon {
-  eat() {
-    print "Crunch crunch crunch!";
-  }
-}
-
-Bacon().eat(); // Prints "Crunch crunch crunch!".

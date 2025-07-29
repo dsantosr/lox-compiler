@@ -1,0 +1,47 @@
+//java -cp target/classes br.com.ufma.lox.Lox classTest.txt
+
+class ContaBancaria {
+
+  init(saldoInicial) {
+    this.saldo = saldoInicial;
+    print "Conta criada com saldo inicial de R$ " + this.saldo;
+  }
+
+  depositar(valor) {
+    if (valor <= 0) {
+      print "Erro: O valor do depósito deve ser positivo.";
+      return;
+    }
+    this.saldo = this.saldo + valor;
+    print "Depósito de R$ " + valor + " realizado. Novo saldo: R$ " + this.saldo;
+  }
+
+  sacar(valor) {
+    if (valor <= 0) {
+      print "Erro: O valor do saque deve ser positivo.";
+      return;
+    }
+    if (this.saldo < valor) {
+      print "Erro: Saldo insuficiente. Saldo atual: R$ " + this.saldo;
+      return;
+    }
+    this.saldo = this.saldo - valor;
+    print "Saque de R$ " + valor + " realizado. Novo saldo: R$ " + this.saldo;
+  }
+
+  consultarSaldo() {
+    return this.saldo;
+  }
+}
+
+var minhaConta = ContaBancaria(500.0);
+print "Saldo da minha conta:" + minhaConta.consultarSaldo();
+
+minhaConta.depositar(200.0);
+print "Saldo da minha conta:" + minhaConta.consultarSaldo();
+
+minhaConta.sacar(150.0);
+print "Saldo da minha conta:" + minhaConta.consultarSaldo();
+
+print "Tentando sacar R$600";
+minhaConta.sacar(600.0);

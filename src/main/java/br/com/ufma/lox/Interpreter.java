@@ -280,6 +280,14 @@ class Interpreter implements Expr.Visitor<Object>,
                     return (String) left + (String) right;
                 }
 
+                if (left instanceof String && right instanceof Double) {
+                    return (String) left + stringify(right);
+                }
+
+                if (left instanceof Double && right instanceof String) {
+                    return stringify(left) + (String) right;
+                }
+
                 throw new RuntimeError(expr.operator,
                         "Operands must be two numbers or two strings.");
             case SLASH:
@@ -358,14 +366,21 @@ class Interpreter implements Expr.Visitor<Object>,
     }
 
     private String stringify(Object object) {
-        if (object == null)
-            return "nil";
+        if (object == null) return "nil";
+
         if (object instanceof Double) {
             String text = object.toString();
-            if (text.endsWith(".0"))
+
+            if (text.endsWith(".0")) {
                 text = text.substring(0, text.length() - 2);
+            }
             return text;
         }
+
+        if (object instanceof Boolean) {
+            return object.toString();
+        }
+
         return object.toString();
     }
 }
