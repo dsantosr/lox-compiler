@@ -1,6 +1,5 @@
 //java -cp target/classes br.com.ufma.lox.Lox fahrenheit.txt
 
-// Função para converter Celsius para Fahrenheit
 fun celsiusParaFahrenheit(celsius) {
   return (celsius * 9 / 5) + 32;
 }
@@ -8,13 +7,12 @@ fun celsiusParaFahrenheit(celsius) {
 print "--- Conversor de Temperatura ---";
 var tempCelsius = 25;
 var tempFahrenheit = celsiusParaFahrenheit(tempCelsius);
-// Correção: Concatene com strings vazias para garantir que tudo seja string antes do '+'
-print "" + tempCelsius + "°C é igual a " + tempFahrenheit + "°F."; // Deve imprimir 77°F
+print tempCelsius + "°C é igual a " + tempFahrenheit + "°F.";
 
 tempCelsius = 0;
 tempFahrenheit = celsiusParaFahrenheit(tempCelsius);
-print "" + tempCelsius + "°C é igual a " + tempFahrenheit + "°F."; // Deve imprimir 32°F
+print tempCelsius + "°C é igual a " + tempFahrenheit + "°F.";
 
 tempCelsius = -10;
 tempFahrenheit = celsiusParaFahrenheit(tempCelsius);
-print "" + tempCelsius + "°C é igual a " + tempFahrenheit + "°F."; // Deve imprimir 14°F
+print tempCelsius + "°C é igual a " + tempFahrenheit + "°F.";
